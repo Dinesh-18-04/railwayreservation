@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Registration Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('https://images.pexels.com/photos/1165994/pexels-photo-1165994.jpeg?cs=srgb&dl=pexels-jplenio-1165994.jpg&fm=jpg');
+            font-family: 'Poppins', sans-serif;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 200vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #333;
+            max-width: 700px;
+            width: 80%;
+            border-radius: 0.5rem;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bolder;
+        }
+
+        .title p {
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        .user_details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .input_box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input_box label {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+        label{
+            font-size: 1.3rem;
+            font-weight: bolder;
+        }
+
+        .input_box input, 
+        .cours select, 
+        .dob input {
+            width: 100%;
+            height: 45px;
+            margin-top: 5px;
+            border-radius: 5px;
+            font-size: 1em;
+            padding-left: 15px;
+            border: 1px solid #000000;
+            background: transparent;
+            transition: border 0.3s ease;
+        }
+        
+        .input_box input::placeholder{
+            color: #000000;
+        }
+
+        .input_box input:focus, 
+        .cours select:focus, 
+        .dob input:focus {
+            border: 1px solid #666;
+            outline: none;
+        }
+
+        .cours, 
+        .dob {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .hey {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .rad, 
+        .check {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .button_1 {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-1 button, 
+        .btn-2 input {
+            width: 150px;
+            border: none;
+            background-color: rgb(93, 93, 175);
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-2 input {
+            background-color: rgb(48, 48, 56);
+        }
+
+        .btn-1 button:hover, 
+        .btn-2 input:hover {
+            background-color: rgb(72, 72, 134);
+        }
+
+        .btn-2 input:hover {
+            background-color: rgb(36, 36, 42);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <p>User Login</p>
+        </div>
+        <form action="/newuser" onsubmit="return formvalidate()"  method="post">
+            <div class="user_details">
+                <div class="input_box">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your Name" name="name">
+                </div>
+                <div class="input_box">
+                    <label for="uname">User Name</label>
+                    <input type="text" id="username" placeholder="Enter your User Name" name="username">
+                </div>
+                <div class="input_box">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="Enter your Email" name="email">
+                </div>
+                <div class="input_box">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" placeholder="Enter your Number" name="phone">
+                </div>
+                <div class="input_box">
+                    <label for="pass">Password</label>
+                    <input type="password" id="password" placeholder="Enter your Password" name="password">
+                </div>
+                <div class="input_box">
+                    <label for="cpass">Confirm Password</label>
+                    <input type="password" id="confirmpassword" placeholder="Confirm Password" name="confirmpassword">
+                </div>
+            </div>
+            <div class="cours">
+                <label for="dep">State</label>
+                <select id="state" name="state">
+                    <option value="">-- Please select --</option>
+                    <option value="tamilnadu">TamilNadu</option>
+                    <option value="kerala">Kerala</option>
+                    <option value="karnataka">Karnataka</option>
+                    <option value="rajasthan">Rajasthan</option>
+                    <option value="punjab">Punjab</option>
+                </select>
+            </div>
+            <div class="dob">
+                <label for="dob">Date of Birth</label>
+                <input type="date" name="dob" id="dob">
+            </div>
+            <div class="hey">
+                <div class="rad">
+                    <label for="gen">Gender</label>
+                    <div class="gen">
+                        <input type="radio" id="male" name="gender" value="Male">
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="Female">
+                        <label for="female">Female</label>
+                        <input type="radio" id="other" name="gender" value="Other">
+                        <label for="other">Other</label>
+                    </div>
+                </div>
+                <div class="input_box">
+                    <label for="phone">Pin Code</label>
+                    <input type="text" id="pincode" placeholder="Enter your Pincode" name="pincode">
+                </div>
+            </div>
+            <div class="button_1">
+                <div class="btn-1">
+                    <button type="submit">Submit</button>
+                </div>
+                <div class="btn-2">
+                    <input type="reset" value="Reset">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        function formvalidate() {
+            var fname = document.getElementById("name").value;
+            if (fname === "" || /\d/.test(fname)) {
+                window.alert("Please enter a valid name");
+                return false;
+            }
+
+            var uname = document.getElementById("username").value;
+            if (uname === "" || /\d/.test(uname)) {
+                window.alert("Please enter a valid User name");
+                return false;
+            }
+
+            var email = document.getElementById("email").value;
+            if (email === "" || !isValidEmail(email)) {
+                window.alert("Please enter a valid email");
+                return false;
+            }
+
+            var ph = document.getElementById("phone").value;
+            if (ph.length !== 10 || isNaN(ph)) {
+                window.alert("Enter a valid 10-digit phone number");
+                return false;
+            }
+
+            var pass = document.getElementById("password").value;
+            var pattern = '^(?=.*\d).{8,}$';
+            if (!pattern.test(pass)) {
+                window.alert("Enter a strong password with at least 8 characters, including one digit and one special character");
+                return false;
+            }
+
+            var repass = document.getElementById("confirmpassword").value;
+            if (pass !== repass) {
+                window.alert("Passwords do not match");
+                return false;
+            }
+
+            var gender = document.querySelector('input[name="gender"]:checked');
+            if (gender == null) {
+                window.alert("Please select your Gender.");
+                return false;
+            }
+
+            var department = document.getElementById("state").value;
+            if (department === "") {
+                alert("Please select your department.");
+                return false;
+            }
+
+            var pin = document.getElementById("pincode").value;
+            if (pin.length !== 6 || isNaN(pin)) {
+                window.alert("Enter a valid 6-digit pincode");
+                return false;
+            }
+
+            var date = document.getElementById("dob").value;
+            if (date === "") {
+                alert("Please select your Date of Birth.");
+                return false;
+            }
+
+            // Show alert and reset form
+            alert("Your details have been submitted.");
+            document.myform.reset();
+            return false;
+        }
+
+        function isValidEmail(email) {
+            var re ='/\S+@\S+\.\S+/';
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>

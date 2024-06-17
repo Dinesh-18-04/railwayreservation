@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .ticket-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .ticket-header {
+            padding: 15px;
+            background-color: #f2f2f2;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+        }
+        .ticket {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+        .ticket:last-child {
+            border-bottom: none;
+        }
+        .ticket:hover {
+            background-color: #f9f9f9;
+        }
+        .ticket-info {
+            flex: 1;
+        }
+        .ticket-info > div {
+            margin-bottom: 5px;
+        }
+        .cancel-link {
+            margin-top: 10px;
+        }
+        .cancel-link a {
+            color: #ff6347;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .cancel-link a:hover {
+            text-decoration: underline;
+        }
+        .download-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .download-link a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #4CAF50;
+            transition: background-color 0.3s;
+        }
+        .download-link a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket-container">
+        <div class="ticket-header">Ticket Information</div>
+        
+        {% for row in data %}
+        <div class="ticket">
+            <div class="ticket-info">
+                <div><strong>Ticket ID:</strong> {{ row[0] }}</div>
+                <div><strong>Price:</strong> {{ row[1] }}</div>
+                <div><strong>Train Name:</strong> {{ row[2] }}</div>
+                <div><strong>Source:</strong> {{ row[3] }}</div>
+                <div><strong>Destination:</strong> {{ row[4] }}</div>
+                <div><strong>Number of Seats:</strong> {{ row[5] }}</div>
+            </div>
+            <div class="cancel-link">
+                <a href="/cancel/{{ row[0] }}">Cancel</a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="download-link">
+        <p><a href="{{ url_for('download_pdf') }}">Download Ticket PDF</a></p>
+    </div>
+</body>
+</html>
